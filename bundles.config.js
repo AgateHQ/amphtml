@@ -49,6 +49,13 @@ exports.extensionBundles = [
     type: TYPES.MISC,
   },
   {
+    name: 'amp-access-agate',
+    version: '0.1',
+    latestVersion: '0.1',
+    options: {hasCss: true},
+    type: TYPES.MISC,
+  },
+  {
     name: 'amp-access-laterpay',
     version: ['0.1', '0.2'],
     latestVersion: '0.2',
