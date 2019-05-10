@@ -9,15 +9,15 @@
   <script id="amp-access" type="application/json">
     {
         "authorization": "https://evening-springs-39131.herokuapp.com/api/authorization?rid=READER_ID&url=CANONICAL_URL",
-        "pingback": "https://ampbyexample.com/components/amp-access/authorization?rid=READER_ID&url=CANONICAL_URL&ref=DOCUMENT_REFERRER&_=RANDOM",
+        "noPingback": true,
         "login": {
           "sign-in": "https://evening-springs-39131.herokuapp.com/account/login?rid=READER_ID&url=CANONICAL_URL",
-          "sign-out": "https://evening-springs-39131.herokuapp.com/account/logout?rid=READER_ID&url=CANONICAL_URL"
+          "sign-out": "https://evening-springs-39131.herokuapp.com/account/logout?rid=READER_ID&url=CANONICAL_URL",
+          "register": "https://evening-springs-39131.herokuapp.com/account/login?rid=READER_ID&url=CANONICAL_URL"
         },
         "authorizationFallbackResponse": {
             "error": true,
-            "loggedIn": false,
-            "powerUser": false
+            "user": false
         }
     }
   </script>
@@ -247,7 +247,7 @@
         </div>
 
 
-        <div amp-access="NOT error AND NOT access"  amp-access-hide >
+        <div amp-access="NOT error AND NOT user"  amp-access-hide >
           <p class="standfirst">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Curabitur ullamcorper turpis vel commodo scelerisque. Phasellus
@@ -256,16 +256,17 @@
         </div>
         <div class="amp-access-agate-container">
           <div class="amp-access-agate__main">
-            <section amp-access="NOT access" class="amp-access-agate__notice">
+            <section amp-access="NOT user" class="amp-access-agate__notice">
                 <template amp-access-template type="amp-mustache">
                   <p> We recently ditched banner ads on our site in favour of a more sustainable, less intrusive solution.</p> 
                   <p>Just create a wallet with our payment partner Agate and you'll be good to go.</p>
                   <p>
                   Pay {{publisher.article_cost}} per article, no more that {{publisher.cap_cost}} per week</p>
                   <button  on="tap:amp-access.login-sign-in" class='amp-access-agate-button' role="button" ref="buttonLogin">Pay per article</button>
+                  <button  on="tap:amp-access.login-register" class='amp-access-agate-button' role="button" ref="buttonLogin">Register</button>
                 </template>
             </section>
-            <section amp-access="access" >
+            <section amp-access="user" >
                 <template amp-access-template type="amp-mustache">
                     <section class="amp-access-agate__balance">
                       <h1 class="amp-access-agate__balance__title">Your Wallet balance:</h1>
@@ -299,7 +300,7 @@
           Oops... Something broke.
         </section>
 
-        <div amp-access="access" amp-access-hide class="article-body" itemprop="articleBody">
+        <div amp-access="user" amp-access-hide class="article-body" itemprop="articleBody">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Curabitur ullamcorper turpis vel commodo scelerisque. Phasellus
